@@ -1,0 +1,24 @@
+[package]
+name = "linkup"
+version = "0.1.0"
+authors = ["ilkecan <ilkecan@protonmail.com>"]
+edition = "2021"
+
+[dependencies.clap]
+version = "3.2.14"
+features = [
+  "derive",
+  "wrap_help",
+]
+
+[dependencies.wild]
+version = "2.0.4"
+
+[dependencies.once_cell]
+version = "1.13.0"
+
+[dependencies.quit]
+version = "1.1.4"
+
+[dependencies.exitcode]
+version = "1.1.2"
