@@ -1,5 +1,5 @@
 mod cli;
-mod linkup;
+mod overlayln;
 mod file;
 
 use clap::Parser;
@@ -7,7 +7,7 @@ use std::ffi::OsString;
 use once_cell::sync::Lazy;
 
 use crate::cli::Args;
-use crate::linkup::Linkup;
+use crate::overlayln::OverlayLn;
 
 static ARGV: Lazy<Vec<OsString>> = Lazy::new(|| wild::args_os().collect());
 
@@ -23,6 +23,6 @@ fn main() {
   });
 
 
-  let linkup = Linkup::new(args);
-  linkup.execute();
+  let overlayln = OverlayLn::new(args);
+  overlayln.execute();
 }

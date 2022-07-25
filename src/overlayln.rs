@@ -9,12 +9,12 @@ use crate::file::{
   Takeable,
 };
 
-pub struct Linkup {
+pub struct OverlayLn {
   directories: Vec<PathBuf>,
   target: PathBuf,
 }
 
-impl Linkup {
+impl OverlayLn {
   pub fn new(args: Args) -> Self {
     Self {
       directories: args.directories,

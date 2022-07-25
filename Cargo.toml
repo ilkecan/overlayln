@@ -1,5 +1,5 @@
 [package]
-name = "linkup"
+name = "overlayln"
 version = "0.1.0"
 authors = ["ilkecan <ilkecan@protonmail.com>"]
 edition = "2021"

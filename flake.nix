@@ -28,8 +28,8 @@
         inherit (pkgs) callPackage;
 
         derivationFunctions = {
-          linkup = {
-            file = ./nix/linkup.nix;
+          overlayln = {
+            file = ./nix/overlayln.nix;
 
             args = {
               inherit self;
@@ -59,13 +59,13 @@
       in
       {
         overlays = rec {
-          linkup = mkOverlay derivationFunctions.linkup;
-          default = linkup;
+          overlayln = mkOverlay derivationFunctions.overlayln;
+          default = overlayln;
         };
 
         packages = rec {
-          linkup = mkPackage derivationFunctions.linkup;
-          default = linkup;
+          overlayln = mkPackage derivationFunctions.overlayln;
+          default = overlayln;
         };
       }
     );
