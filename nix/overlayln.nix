@@ -1,19 +1,21 @@
 {
   callPackage,
-  crate2nix,
+  crate2nix ? inputs.crate2nix,
+  inputs,
   lib,
-  nix-filter,
-  self,
+  nix-filter ? inputs.nix-filter.lib,
+  nix-utils ? inputs.nix-utils.lib,
 }:
 
 let
   inherit (nix-filter) inDirectory;
+  inherit (nix-utils) sourceOf;
 
-  root = self;
+  root = inputs.self;
   cargoToml = lib.importTOML "${root}/Cargo.toml";
   inherit (cargoToml.package) name;
 
-  crateTools = callPackage "${crate2nix}/tools.nix" { };
+  crateTools = callPackage "${sourceOf crate2nix}/tools.nix" { };
   buildRustCrateForPkgs = pkgs: with pkgs; buildRustCrate;
   cargoNix = callPackage (crateTools.generatedCargoNix {
     inherit name;
