@@ -35,8 +35,6 @@ impl OverlayLn {
       target.overlay(dir);
     }
 
-    println!("{:?}", target);
-
     target
   }
 

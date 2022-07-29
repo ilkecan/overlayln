@@ -37,11 +37,6 @@ impl File {
   }
 
   pub fn overlay(&mut self, path: PathBuf) {
-    if !path.is_dir() {
-      *self = File::symlink(path);
-      return
-    }
-
     if let File::SymLink(symlink) = self {
       if !symlink.is_dir() {
         *self = File::symlink(path);
@@ -52,11 +47,20 @@ impl File {
     }
 
     if let File::Directory(directory) = self {
-      for entry in fs::read_dir(path).unwrap() {
-        let entry = entry.unwrap();
-        directory.add(entry.path());
+      if path.is_dir() {
+        for entry in fs::read_dir(path).unwrap() {
+          directory.add(entry.unwrap().path());
+        }
+      } else {
+        directory.add(path);
       }
     }
+  }
+}
+
+impl Default for File {
+  fn default() -> Self {
+    File::symlink(PathBuf::default())
   }
 }
 
