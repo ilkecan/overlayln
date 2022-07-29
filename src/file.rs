@@ -54,6 +54,10 @@ impl File {
       } else {
         directory.add(path);
       }
+
+      if let Some(file) = directory.fold() {
+        *self = file;
+      }
     }
   }
 }
@@ -95,6 +99,16 @@ impl Directory {
 
   pub fn contents(self) -> HashMap<Name, File> {
     self.contents.0
+  }
+
+  pub fn fold(&mut self) -> Option<File> {
+    let mut entries = self.contents.0.values_mut();
+    let first = entries.next().unwrap();
+    if entries.next().is_none() && matches!(first, File::SymLink(_)) {
+      Some(first.take())
+    } else {
+      None
+    }
   }
 }
 
