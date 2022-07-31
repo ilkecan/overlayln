@@ -18,10 +18,10 @@ in
   ...
 }@args:
 let
-  args' = args // {
+  env = args // {
     passAsFile = [ "paths" ];
   };
 in
-runCommandLocal name args' ''
+runCommandLocal name env ''
   ${getExe overlayln} --target-directory $out $(cat $pathsPath)
 ''

@@ -48,16 +48,19 @@
     },
     "nix-utils": {
       "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1658941135,
-        "narHash": "sha256-Bg3xjZN2CBVgDd0KqnJww4PGqssVN6lNYcO73OAzb/o=",
+        "lastModified": 1659280941,
+        "narHash": "sha256-tuZYRjxvzkKQN4SGRBJdPUfI024H7XkkWVHfR3cwfxk=",
         "owner": "ilkecan",
         "repo": "nix-utils",
-        "rev": "2b0794f2ff7fbc60178b35dff040d0c10324dbd3",
+        "rev": "aa3d26abeb6a653e7cced08f1aeacc86933c79d6",
         "type": "github"
       },
       "original": {

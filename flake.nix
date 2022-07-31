@@ -7,6 +7,7 @@
       url = "github:ilkecan/nix-utils";
       inputs = {
         nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
       };
     };
     crate2nix = {
@@ -25,17 +26,22 @@
         removeSuffix
       ;
 
+      inherit (inputs.nix-utils.lib.letterCase)
+        kebabToCamel
+      ;
+
       mkOverlay = drvFuncFile:
         (final: _prev: {
-          ${removeSuffix ".nix" (baseNameOf drvFuncFile)} =
+          ${removeSuffix ".nix" (kebabToCamel (baseNameOf drvFuncFile))} =
               final.callPackage drvFuncFile { inherit inputs; };
         });
     in
     {
       overlays = rec {
         default = overlayln;
-        overlayln = mkOverlay ./nix/overlayln.nix;
         linkup = mkOverlay ./nix/linkup.nix;
+        overlayln = mkOverlay ./nix/overlayln.nix;
+        wrapPackage = mkOverlay ./nix/wrap-package.nix;
       };
     } // inputs.flake-utils.lib.eachDefaultSystem (system:
       let
@@ -53,6 +59,7 @@
 
         lib = {
           linkup = mkPackage ./nix/linkup.nix;
+          wrapPackage = mkPackage ./nix/wrap-package.nix;
         };
       }
     );
