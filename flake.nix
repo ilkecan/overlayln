@@ -18,34 +18,31 @@
 
   outputs = { self, nixpkgs, ... }@inputs:
     let
-      inherit (builtins)
-        baseNameOf
+      inherit (nixpkgs.lib)
+        composeManyExtensions
       ;
 
-      inherit (inputs.nixpkgs.lib)
-        removeSuffix
+      inherit (inputs.nix-utils.lib)
+        mkOverlay
       ;
 
-      inherit (inputs.nix-utils.lib.letterCase)
-        kebabToCamel
-      ;
-
-      mkOverlay = drvFuncFile:
-        (final: _prev: {
-          ${removeSuffix ".nix" (kebabToCamel (baseNameOf drvFuncFile))} =
-              final.callPackage drvFuncFile { inherit inputs; };
-        });
+      mkOverlay' = mkOverlay inputs;
     in
     {
       overlays = rec {
-        default = overlayln;
-        linkup = mkOverlay ./nix/linkup.nix;
-        overlayln = mkOverlay ./nix/overlayln.nix;
-        wrapPackage = mkOverlay ./nix/wrap-package.nix;
+        default = composeManyExtensions [
+          overlayln
+          linkup
+          wrapPackage
+        ];
+
+        linkup = mkOverlay' ./nix/linkup.nix;
+        overlayln = mkOverlay' ./nix/overlayln.nix;
+        wrapPackage = mkOverlay' ./nix/wrap-package.nix;
       };
     } // inputs.flake-utils.lib.eachDefaultSystem (system:
       let
-        pkgs = inputs.nixpkgs.legacyPackages.${system};
+        pkgs = nixpkgs.legacyPackages.${system};
         inherit (pkgs) callPackage;
 
         mkPackage = drvFuncFile:
@@ -53,8 +50,8 @@
       in
       {
         packages = rec {
-          overlayln = mkPackage ./nix/overlayln.nix;
           default = overlayln;
+          overlayln = mkPackage ./nix/overlayln.nix;
         };
 
         lib = {
