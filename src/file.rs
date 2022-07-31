@@ -62,12 +62,6 @@ impl File {
   }
 }
 
-impl Default for File {
-  fn default() -> Self {
-    File::symlink(PathBuf::default())
-  }
-}
-
 #[derive(
   Debug,
 )]
@@ -104,8 +98,15 @@ impl Directory {
   pub fn fold(&mut self) -> Option<File> {
     let mut entries = self.contents.0.values_mut();
     let first = entries.next().unwrap();
-    if entries.next().is_none() && matches!(first, File::SymLink(_)) {
-      Some(first.take())
+    // use with rust 1.64 https://github.com/rust-lang/rust/pull/94927 
+    // if entries.next().is_none() && let File::SymLink(symlink) = first {
+    if entries.next().is_some() {
+      return None
+    }
+
+    if let File::SymLink(symlink) = first {
+      symlink.target.pop();
+      Some(File::symlink(symlink.target.take()))
     } else {
       None
     }
