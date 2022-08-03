@@ -15,6 +15,7 @@ let
     forEach
     getBin
     getName
+    optionalAttrs
   ;
 
   inherit (nix-utils)
@@ -72,17 +73,17 @@ let
           "overrideDerivation"
         ])
         // listToAttrs outputList
-        // { inherit all outputs; }
+        // (optionalAttrs (drv ? outputs) { inherit all outputs; })
       ;
       outputs = drv.outputs or [ ];
       all = map (x: x.value) outputList;
       outputList = forEach outputs (outputName: {
         name = outputName;
         value = commonAttrs // {
-          inherit outputName;
           inherit (wrappedDrv.${outputName})
             drvPath
             outPath
+            outputName
             passthru
             type
           ;
