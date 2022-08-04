@@ -15,6 +15,7 @@ let
     forEach
     getBin
     getName
+    getValues
     optionalAttrs
   ;
 
@@ -76,7 +77,7 @@ let
         // (optionalAttrs (drv ? outputs) { inherit all outputs; })
       ;
       outputs = drv.outputs or [ ];
-      all = map (x: x.value) outputList;
+      all = getValues outputList;
       outputList = forEach outputs (outputName: {
         name = outputName;
         value = commonAttrs // {
