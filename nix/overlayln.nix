@@ -1,10 +1,11 @@
 {
-  callPackage,
-  crate2nix ? inputs.crate2nix,
   inputs,
-  lib,
+  system,
+  callPackage ? inputs.nixpkgs.legacyPackages.${system}.callPackage,
+  crate2nix ? inputs.crate2nix,
+  lib ? inputs.nixpkgs.lib,
   nix-filter ? inputs.nix-filter.lib,
-  nix-utils ? inputs.nix-utils.lib,
+  nix-utils ? inputs.nix-utils.libs.${system},
 }:
 
 let

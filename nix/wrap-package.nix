@@ -1,9 +1,9 @@
 {
   inputs,
-  lib,
-  linkup ? inputs.self.outputs.lib.${system}.linkup,
-  nix-utils ? inputs.nix-utils.lib.${system},
   system,
+  lib ? inputs.nixpkgs.lib,
+  linkup ? inputs.self.outputs.libs.${system}.linkup,
+  nix-utils ? inputs.nix-utils.libs.${system},
 }:
 
 let

@@ -26,7 +26,7 @@
         mkOverlay
       ;
 
-      mkOverlay' = mkOverlay inputs;
+      mkOverlay' = mkOverlay { inherit inputs; };
     in
     {
       overlays = rec {
@@ -54,7 +54,7 @@
           overlayln = mkPackage ./nix/overlayln.nix;
         };
 
-        lib = {
+        libs = {
           linkup = mkPackage ./nix/linkup.nix;
           wrapPackage = mkPackage ./nix/wrap-package.nix;
         };
