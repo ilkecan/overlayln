@@ -16,6 +16,30 @@
         "type": "github"
       }
     },
+    "dnm": {
+      "inputs": {
+        "nix-utils": [
+          "nix-alacarte"
+        ],
+        "nixpkgs": [
+          "nix-alacarte",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1662032112,
+        "narHash": "sha256-srPpt+ijMKnQvpkkG8n0/53zRmFu6odBLokQQpnH9TQ=",
+        "owner": "ilkecan",
+        "repo": "dnm",
+        "rev": "f2dafb5c02807c17f09abacf5d634c61b2300ccf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ilkecan",
+        "repo": "dnm",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "locked": {
         "lastModified": 1656928814,
@@ -31,6 +55,31 @@
         "type": "github"
       }
     },
+    "nix-alacarte": {
+      "inputs": {
+        "dnm": "dnm",
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "overlayln": []
+      },
+      "locked": {
+        "lastModified": 1662034169,
+        "narHash": "sha256-f/rx4qIa8rRsbts4a+xPzvQop5rloKt30d1Y4hoPEFw=",
+        "owner": "ilkecan",
+        "repo": "nix-alacarte",
+        "rev": "128cb4f37b4d8a61afee3df0e12f79e3639b6639",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ilkecan",
+        "repo": "nix-alacarte",
+        "type": "github"
+      }
+    },
     "nix-filter": {
       "locked": {
         "lastModified": 1653590866,
@@ -43,29 +92,6 @@
       "original": {
         "owner": "numtide",
         "repo": "nix-filter",
-        "type": "github"
-      }
-    },
-    "nix-utils": {
-      "inputs": {
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1659739072,
-        "narHash": "sha256-xMgOcgLDXFx3imLq5pQyT3H4hm8M/J9Hpb9NpmnrquM=",
-        "owner": "ilkecan",
-        "repo": "nix-utils",
-        "rev": "746856b8159582ab277ff40bbdd2e2d205082a9b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ilkecan",
-        "repo": "nix-utils",
         "type": "github"
       }
     },
@@ -89,8 +115,8 @@
       "inputs": {
         "crate2nix": "crate2nix",
         "flake-utils": "flake-utils",
+        "nix-alacarte": "nix-alacarte",
         "nix-filter": "nix-filter",
-        "nix-utils": "nix-utils",
         "nixpkgs": "nixpkgs"
       }
     }
