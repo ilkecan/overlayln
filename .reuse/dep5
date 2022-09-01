@@ -1,7 +1,7 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: placeholder
+Upstream-Name: overlayln
 Upstream-Contact: ilkecan <ilkecan@protonmail.com>
-Source: https://github.com/ilkecan/placeholder
+Source: https://github.com/ilkecan/overlayln
 
 Files: *.lock
 Copyright: 2022 ilkecan <ilkecan@protonmail.com>

@@ -18,7 +18,7 @@
     },
     "dnm": {
       "inputs": {
-        "nix-utils": [
+        "nix-alacarte": [
           "nix-alacarte"
         ],
         "nixpkgs": [
@@ -27,11 +27,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1662032112,
-        "narHash": "sha256-srPpt+ijMKnQvpkkG8n0/53zRmFu6odBLokQQpnH9TQ=",
+        "lastModified": 1662036592,
+        "narHash": "sha256-+ltP4liCT2UiZFAdjJy6ZAnT3STU7pkbKz5ubcqJ/io=",
         "owner": "ilkecan",
         "repo": "dnm",
-        "rev": "f2dafb5c02807c17f09abacf5d634c61b2300ccf",
+        "rev": "5d2df0e3a058f826c209260dae24fa4c511ce028",
         "type": "github"
       },
       "original": {
@@ -67,11 +67,11 @@
         "overlayln": []
       },
       "locked": {
-        "lastModified": 1662034169,
-        "narHash": "sha256-f/rx4qIa8rRsbts4a+xPzvQop5rloKt30d1Y4hoPEFw=",
+        "lastModified": 1662036830,
+        "narHash": "sha256-uCBIBEy53QFEzpcl+0goNoB3/vxnk0EJH1pzEhF3qy8=",
         "owner": "ilkecan",
         "repo": "nix-alacarte",
-        "rev": "128cb4f37b4d8a61afee3df0e12f79e3639b6639",
+        "rev": "af3bc9b5a7fe4f6de5692668f7faf87b7fb4aabd",
         "type": "github"
       },
       "original": {
