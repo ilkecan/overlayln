@@ -1,9 +1,12 @@
 {
   inputs,
   system,
-  alacarte ? inputs.nix-alacarte.libs.${system},
-  lib ? inputs.nixpkgs.lib,
-  linkup ? inputs.self.outputs.libs.${system}.linkup,
+
+  lib,
+  nix-alacarte,
+
+  linkup ? inputs.self.libs.${system}.linkup,
+  ...
 }:
 
 let
@@ -19,7 +22,7 @@ let
     optionalAttrs
   ;
 
-  inherit (alacarte)
+  inherit (nix-alacarte)
     optionalValue
     wrapExecutable
   ;

@@ -1,9 +1,13 @@
 {
   inputs,
   system,
-  lib ? inputs.nixpkgs.lib,
-  overlayln ? inputs.self.outputs.packages.${system}.overlayln,
-  runCommandLocal ? inputs.nixpkgs.legacyPackages.${system}.runCommandLocal,
+
+  lib,
+  pkgs,
+
+  overlayln ? inputs.self.packages.${system}.overlayln,
+  runCommandLocal ? pkgs.runCommandLocal,
+  ...
 }:
 
 let

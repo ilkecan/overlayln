@@ -21,38 +21,23 @@
     let
       inherit (builtins)
         attrValues
-        mapAttrs
       ;
 
       inherit (inputs.nixpkgs.lib)
         composeManyExtensions
       ;
-
-      inherit (inputs.nix-alacarte.lib)
-        mkOverlay
-      ;
     in
     {
-      overlays =
-        let
-          overlays = mapAttrs (_: mkOverlay { inherit inputs; }) {
-            linkup = ./nix/linkup.nix;
-            overlayln = ./nix/overlayln.nix;
-            wrapPackage = ./nix/wrap-package.nix;
-          };
-        in
-        overlays // { default = composeManyExtensions (attrValues overlays); };
+      overlays = import ./nix/overlays { inherit inputs; } // {
+        default = composeManyExtensions (attrValues self.overlays);
+      };
     } // inputs.flake-utils.lib.eachDefaultSystem (system:
       {
-        packages = {
+        packages = import ./nix/pkgs { inherit inputs system; } // {
           default = self.packages.${system}.overlayln;
-          overlayln = import ./nix/overlayln.nix { inherit inputs system; };
         };
 
-        libs = {
-          linkup = import ./nix/linkup.nix { inherit inputs system; };
-          wrapPackage = import ./nix/wrap-package.nix { inherit inputs system; };
-        };
+        libs = import ./nix/lib { inherit inputs system; };
       }
     );
 }
