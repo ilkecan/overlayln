@@ -1,6 +1,5 @@
 {
   inputs,
-  system,
 
   lib,
   nix-alacarte,
@@ -9,6 +8,7 @@
 
   crate2nix ? inputs.crate2nix,
   defaultCrateOverrides ? pkgs.defaultCrateOverrides,
+  ...
 }:
 
 let
