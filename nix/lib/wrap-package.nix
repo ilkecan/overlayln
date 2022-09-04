@@ -1,11 +1,10 @@
 {
-  inputs,
-  system,
+  inputs ? assert false; "must be called with either 'inputs' or all of [ 'lib' 'nix-alacarte' 'nix-filter' 'pkgs' ]",
+  system ? assert false; "must be called with either 'system' or all of [ 'linkup' 'nix-alacarte' ]",
 
-  lib,
-  nix-alacarte,
-
+  lib ? inputs.nixpkgs.lib,
   linkup ? inputs.self.libs.${system}.linkup,
+  nix-alacarte ? inputs.nix-alacarte.libs.${system},
   ...
 }:
 

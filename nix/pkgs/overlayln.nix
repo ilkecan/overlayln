@@ -1,13 +1,15 @@
 {
-  inputs,
+  inputs ? assert false; "must be called with either 'inputs' or all of [ 'lib' 'nix-alacarte' 'nix-filter' 'pkgs' 'crate2nix' ]",
+  system ? assert false; "must be called with either 'system' or all of [ 'nix-alacarte' 'pkgs' ]",
 
-  lib,
-  nix-alacarte,
-  nix-filter,
-  pkgs,
+  lib ? inputs.nixpkgs.lib,
+  nix-alacarte ? inputs.nix-alacarte.libs.${system},
+  nix-filter ? inputs.nix-filter.lib,
+
+  pkgs ? inputs.nixpkgs.legacyPackages.${system},
+  defaultCrateOverrides ? pkgs.defaultCrateOverrides,
 
   crate2nix ? inputs.crate2nix,
-  defaultCrateOverrides ? pkgs.defaultCrateOverrides,
   ...
 }:
 

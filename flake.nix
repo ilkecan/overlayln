@@ -26,6 +26,10 @@
       inherit (inputs.nixpkgs.lib)
         composeManyExtensions
       ;
+
+      inherit (inputs.nix-alacarte.lib)
+        importDirectory
+      ;
     in
     {
       overlays = import ./nix/overlays { inherit inputs; } // {
@@ -33,11 +37,11 @@
       };
     } // inputs.flake-utils.lib.eachDefaultSystem (system:
       {
-        packages = import ./nix/pkgs { inherit inputs system; } // {
+        packages = importDirectory ./nix/pkgs { inherit inputs system; } { } // {
           default = self.packages.${system}.overlayln;
         };
 
-        libs = import ./nix/lib { inherit inputs system; };
+        libs = importDirectory ./nix/lib { inherit inputs system; } { };
       }
     );
 }

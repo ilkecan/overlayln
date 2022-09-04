@@ -1,11 +1,11 @@
 {
-  inputs,
-  system,
+  inputs ? assert false; "must be called with either 'inputs' or all of [ 'lib' 'overlayln' 'pkgs' ]",
+  system ? assert false; "must be called with either 'system' or all of [ 'overlayln' 'pkgs' ]",
 
-  lib,
-  pkgs,
-
+  lib ? inputs.nixpkgs.lib,
   overlayln ? inputs.self.packages.${system}.overlayln,
+
+  pkgs ? inputs.nixpkgs.legacyPackages.${system},
   runCommandLocal ? pkgs.runCommandLocal,
   ...
 }:
