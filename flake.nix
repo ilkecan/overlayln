@@ -32,8 +32,12 @@
       ;
     in
     {
-      overlays = import ./nix/overlays { inherit inputs; } // {
-        default = composeManyExtensions (attrValues self.overlays);
+      overlays =
+        let
+          overlays = import ./nix/overlays { inherit inputs; };
+        in
+        overlays // {
+        default = composeManyExtensions (attrValues overlays);
       };
     } // inputs.flake-utils.lib.eachDefaultSystem (system:
       {
