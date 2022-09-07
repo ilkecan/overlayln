@@ -34,11 +34,8 @@ let
     ../pkgs
   ];
 
-  getNixFiles = dir:
-    nixFiles dir { };
-
   overlays = pipe dirs [
-    (map getNixFiles)
+    (map (nixFiles { }))
     mergeListOfAttrs
     (mapAttrs (_: mkOverlay { inherit inputs; }))
   ];
