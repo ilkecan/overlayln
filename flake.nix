@@ -40,12 +40,16 @@
         default = composeManyExtensions (attrValues overlays);
       };
     } // inputs.flake-utils.lib.eachDefaultSystem (system:
+      let
+        importDirectory' = path:
+          importDirectory { } path { inherit inputs system; };
+      in
       {
-        packages = importDirectory ./nix/pkgs { inherit inputs system; } { } // {
+        packages = importDirectory' ./nix/pkgs // {
           default = self.packages.${system}.overlayln;
         };
 
-        libs = importDirectory ./nix/lib { inherit inputs system; } { };
+        libs = importDirectory' ./nix/lib;
       }
     );
 }
