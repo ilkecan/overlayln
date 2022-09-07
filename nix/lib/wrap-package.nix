@@ -1,6 +1,23 @@
+let
+  missingDependantOf =
+    import ./../../submodules/missing-dependant-of.nix/default.nix {
+      inputs = [
+        "lib"
+        "nix-alacarte"
+        "nix-filter"
+        "pkgs"
+      ];
+
+      system = [
+        "linkup"
+        "nix-alacarte"
+      ];
+    };
+in
+
 {
-  inputs ? assert false; "must be called with either 'inputs' or all of [ 'lib' 'nix-alacarte' 'nix-filter' 'pkgs' ]",
-  system ? assert false; "must be called with either 'system' or all of [ 'linkup' 'nix-alacarte' ]",
+  inputs ? missingDependantOf.inputs,
+  system ? missingDependantOf.system,
 
   lib ? inputs.nixpkgs.lib,
   linkup ? inputs.self.libs.${system}.linkup,

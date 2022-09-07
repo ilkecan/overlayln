@@ -1,6 +1,24 @@
+let
+  missingDependantOf =
+    import ./../../submodules/missing-dependant-of.nix/default.nix {
+      inputs = [
+        "crate2nix"
+        "lib"
+        "nix-alacarte"
+        "nix-filter"
+        "pkgs"
+      ];
+
+      system = [
+        "nix-alacarte"
+        "pkgs"
+      ];
+    };
+in
+
 {
-  inputs ? assert false; "must be called with either 'inputs' or all of [ 'lib' 'nix-alacarte' 'nix-filter' 'pkgs' 'crate2nix' ]",
-  system ? assert false; "must be called with either 'system' or all of [ 'nix-alacarte' 'pkgs' ]",
+  inputs ? missingDependantOf.inputs,
+  system ? missingDependantOf.system,
 
   lib ? inputs.nixpkgs.lib,
   nix-alacarte ? inputs.nix-alacarte.libs.${system},

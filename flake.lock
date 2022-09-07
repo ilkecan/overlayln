@@ -27,11 +27,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1662036592,
-        "narHash": "sha256-+ltP4liCT2UiZFAdjJy6ZAnT3STU7pkbKz5ubcqJ/io=",
+        "lastModified": 1662424320,
+        "narHash": "sha256-mAEfCkMvzr2huTPjq8prZBI7vfL2lO5Y4lhuVX7IKME=",
         "owner": "ilkecan",
         "repo": "dnm",
-        "rev": "5d2df0e3a058f826c209260dae24fa4c511ce028",
+        "rev": "9d7a7a027713cfaa1ce182f683c425bdf3e21543",
         "type": "github"
       },
       "original": {
@@ -67,11 +67,11 @@
         "overlayln": []
       },
       "locked": {
-        "lastModified": 1662071409,
-        "narHash": "sha256-pa1yX+xFDq5+b+Ik4RP+rjug+sOzMUSJ7S2fZl1845E=",
+        "lastModified": 1662567354,
+        "narHash": "sha256-WwAO5ykNlZE+mI4zfsbKic6W8X/SnzUeTf3f2G9XGdM=",
         "owner": "ilkecan",
         "repo": "nix-alacarte",
-        "rev": "9ddf64ef5ab498b0e7d13f19c2db9da6aab014ca",
+        "rev": "ace1c1bf0611c5abc63623d4332a956507c690b1",
         "type": "github"
       },
       "original": {
