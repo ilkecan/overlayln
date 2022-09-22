@@ -39,7 +39,8 @@ c
 The flake also provides two Nix functions:
 ## linkup
 A function on top of `overlayln` whose parameters are similar to
-`symlinkJoin`'s.
+`symlinkJoin`'s. Its behaviour is very similar to `buildEnv`'s but without the
+derivation output magic.
 
 ### example
 ``` nix
