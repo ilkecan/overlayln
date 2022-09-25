@@ -1,0 +1,31 @@
+# https://git-scm.com/docs/gitattributes
+
+# macro attribute for text files:
+# diff: treat as text while generating diffs
+# text: normalize EOL and use native line endings on checkout
+[attr]text diff text
+
+# End-of-line normalization for files determined to be text by Git.
+# A saner default for people missing `core.autocrlf` config value.
+* text=auto
+
+# text files
+*.md text
+*.nix text
+*.rs text
+*.toml text
+*.txt text
+.editorconfig text
+.gitattributes text
+.gitignore text
+/.gitmodules text
+/.reuse/dep5 text
+/Cargo.lock text
+/flake.lock text
+
+# special diff values
+*.md diff=markdown
+*.rs diff=rust
+
+# linguist
+*.lock linguist-generated=true

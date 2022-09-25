@@ -3,11 +3,13 @@ Upstream-Name: overlayln
 Upstream-Contact: ilkecan <ilkecan@protonmail.com>
 Source: https://github.com/ilkecan/overlayln
 
-Files: *.lock
+Files:
+  *.lock
 Copyright: 2022 ilkecan <ilkecan@protonmail.com>
 License: Unlicense
 
 Files:
+  *.gitattributes
   *.gitignore
   *.md
   *.toml
