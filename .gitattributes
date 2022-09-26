@@ -18,7 +18,6 @@
 .editorconfig text
 .gitattributes text
 .gitignore text
-/.gitmodules text
 /.reuse/dep5 text
 /Cargo.lock text
 /flake.lock text

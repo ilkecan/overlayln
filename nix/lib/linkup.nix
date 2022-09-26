@@ -1,22 +1,6 @@
-let
-  missingDependantOf =
-    import ./../../submodules/missing-dependant-of.nix/default.nix {
-      inputs = [
-        "lib"
-        "overlayln"
-        "pkgs"
-      ];
-
-      system = [
-        "overlayln"
-        "pkgs"
-      ];
-    };
-in
-
 {
-  inputs ? missingDependantOf.inputs,
-  system ? missingDependantOf.system,
+  inputs ? { },
+  system ? "",
 
   lib ? inputs.nixpkgs.lib,
   overlayln ? inputs.self.packages.${system}.overlayln,

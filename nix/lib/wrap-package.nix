@@ -1,23 +1,6 @@
-let
-  missingDependantOf =
-    import ./../../submodules/missing-dependant-of.nix/default.nix {
-      inputs = [
-        "lib"
-        "nix-alacarte"
-        "nix-filter"
-        "pkgs"
-      ];
-
-      system = [
-        "linkup"
-        "nix-alacarte"
-      ];
-    };
-in
-
 {
-  inputs ? missingDependantOf.inputs,
-  system ? missingDependantOf.system,
+  inputs ? { },
+  system ? "",
 
   lib ? inputs.nixpkgs.lib,
   linkup ? inputs.self.libs.${system}.linkup,
