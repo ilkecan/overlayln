@@ -5,16 +5,13 @@
   nix-alacarte ? inputs.nix-alacarte.libs.default,
 }:
 let
-  inherit (builtins)
-    mapAttrs
-  ;
-
   inherit (lib)
     pipe
   ;
 
   inherit (nix-alacarte)
-    mergeListOfAttrs
+    attrs
+    list
     mkOverlay
     nixFiles
   ;
@@ -25,9 +22,9 @@ let
   ];
 
   overlays = pipe dirs [
-    (map (nixFiles { }))
-    mergeListOfAttrs
-    (mapAttrs (_: mkOverlay { inherit inputs; }))
+    (list.map (nixFiles { }))
+    attrs.concat
+    (attrs.map (_: mkOverlay { inherit inputs; }))
   ];
 in
 overlays

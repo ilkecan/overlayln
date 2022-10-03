@@ -9,19 +9,15 @@
 }:
 
 let
-  inherit (builtins)
-    listToAttrs
-  ;
-
   inherit (lib)
-    forEach
     getBin
     getName
     getValues
-    optionalAttrs
   ;
 
   inherit (nix-alacarte)
+    attrs
+    list
     optionalValue
     wrapExecutable
   ;
@@ -75,12 +71,12 @@ let
           "override"
           "overrideDerivation"
         ])
-        // listToAttrs outputList
-        // (optionalAttrs (drv ? outputs) { inherit all outputs; })
+        // list.toAttrs outputList
+        // (attrs.optional (drv ? outputs) { inherit all outputs; })
       ;
       outputs = drv.outputs or [ ];
       all = getValues outputList;
-      outputList = forEach outputs (outputName: {
+      outputList = list.forEach outputs (outputName: {
         name = outputName;
         value = commonAttrs // {
           inherit (wrappedDrv.${outputName})

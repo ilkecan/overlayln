@@ -19,15 +19,12 @@
 
   outputs = { self, ... }@inputs:
     let
-      inherit (builtins)
-        attrValues
-      ;
-
       inherit (inputs.nixpkgs.lib)
         composeManyExtensions
       ;
 
       inherit (inputs.nix-alacarte.lib)
+        attrs
         importDirectory
       ;
     in
@@ -37,7 +34,7 @@
           overlays = import ./nix/overlays { inherit inputs; };
         in
         overlays // {
-        default = composeManyExtensions (attrValues overlays);
+        default = composeManyExtensions (attrs.values overlays);
       };
     } // inputs.flake-utils.lib.eachDefaultSystem (system:
       let
